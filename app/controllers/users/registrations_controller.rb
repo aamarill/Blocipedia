@@ -20,6 +20,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
   def update
     super
+    # redirect_to [@topic, @post]
+    # redirect_to [current_user]
+    # render 
+    flash[:notice] = "Password was updated."
   end
 
   # DELETE /resource
