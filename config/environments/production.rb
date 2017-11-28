@@ -88,4 +88,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+    #Added by Adan Amarillas  - Blocipedia checkpoint 2
+    config.action_mailer.default_url_options = { host: 'Blocipedia.herokuapp.com' }
 end
