@@ -15,7 +15,7 @@ class ApplicationPolicy
   end
 
   def create?
-    false
+    user.present?
   end
 
   def new?
@@ -23,7 +23,11 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    if record.private == true
+        user == record.user
+    else
+        user.present?
+    end
   end
 
   def edit?
@@ -31,7 +35,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    user.present? && (user == record.user)
   end
 
   def scope

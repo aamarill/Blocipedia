@@ -20,6 +20,7 @@ class WikisController < ApplicationController
         @wiki = Wiki.new
         @wiki.title = params[:wiki][:title]
         @wiki.body  = params[:wiki][:body]
+        @wiki.private = params[:wiki][:private]
         @wiki.user  = current_user
 
         if @wiki.save
@@ -33,12 +34,20 @@ class WikisController < ApplicationController
 
     def edit
         @wiki = Wiki.find(params[:id])
+
+        authorize @wiki
     end
 
     def update
         @wiki = Wiki.find(params[:id])
         @wiki.title = params[:wiki][:title]
         @wiki.body = params[:wiki][:body]
+
+        unless params[:wiki][:private].nil?
+            @wiki.private = params[:wiki][:private]
+        end
+
+        authorize @wiki
 
         if @wiki.save
             flash[:notice] = "Wiki was updated"
@@ -51,6 +60,8 @@ class WikisController < ApplicationController
 
     def destroy
         @wiki = Wiki.find(params[:id])
+
+        authorize @wiki
 
         if @wiki.destroy
             flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."

@@ -9,7 +9,7 @@ require 'random_data'
 		email: RandomData.random_email,
 		password: pw,
 		password_confirmation: pw,
-		confirmed_at: Date.today
+		confirmed_at: Date.today,
 	)
 
 	user.update_attribute(:confirmed_at, rand(10.minutes .. 1.year).ago)
@@ -27,13 +27,21 @@ users = User.all
 
 end
 
-# Create a custom user to be used during development
+# Create 2 custom users to be used during development
 User.create!(
 	email: "aamarill.engr@gmail.com",
 	password: "password",
 	password_confirmation: "password",
 	confirmed_at: Date.today
 )
+
+User.create!(
+	email: "aamarill.engr2@gmail.com",
+	password: "password",
+	password_confirmation: "password",
+	confirmed_at: Date.today
+)
+
 
 
 puts "Seed Finished"

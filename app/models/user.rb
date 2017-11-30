@@ -10,4 +10,14 @@ class User < ApplicationRecord
             :confirmable
 
     has_many :wikis, dependent: :destroy
+
+    after_initialize :init
+
+
+
+    private    
+    def init
+        # The default user type will be standard, no matter what the user inputs
+        self.role = "standard"
+    end
 end

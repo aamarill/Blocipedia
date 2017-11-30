@@ -1,4 +1,11 @@
 <h1><%= @wiki.title %></h1>
+<h4>
+    <% if @wiki.private %>
+        <div>Private Wiki</div>
+    <% else %>
+        <div>Public Wiki</div>
+    <% end %>
+</h4>
 
 <div class="row">
   <div class="col-md-8">
@@ -8,10 +15,11 @@
 
 <%= link_to "Back to Wikis", wikis_path, class: 'btn' %></br>
 
-<% if current_user %>
-    <%= link_to "Edit this wiki", edit_wiki_path, class: 'btn btn-success' %>
+
+<% if policy(@wiki).edit? %>
+  <%= link_to "Edit Wiki", edit_wiki_path, class: 'btn btn-success' %>
 <% end %>
 
-<% if current_user == @wiki.user %>
+<% if policy(@wiki).destroy? %>
     <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?'} %>
 <% end %>

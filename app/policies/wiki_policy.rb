@@ -1,12 +1,5 @@
-class WikiPolicy
+class WikiPolicy < ApplicationPolicy
 
-	attr_reader :user, :wiki
-
-	def initialize(user, wiki)
-		@user = user
-		@post = post
-	end
-
-	#You map controller actions to
+	#You map controller actions to class methods
 
 end
