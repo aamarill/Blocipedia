@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+    include Pundit
     protect_from_forgery with: :exception
 
     # Per Devise documentation. This line needs to come AFTER "protect_from_forgery"
