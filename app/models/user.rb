@@ -8,4 +8,6 @@ class User < ApplicationRecord
             :trackable,
             :validatable,
             :confirmable
+
+    has_many :wikis, dependent: :destroy
 end
