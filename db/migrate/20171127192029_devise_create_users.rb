@@ -3,7 +3,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
     create_table :users do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :encrypted_password, null: false, default: "" #note this will NOT equal the password since it's an encrypted version of the password
 
       ## Recoverable
       t.string   :reset_password_token

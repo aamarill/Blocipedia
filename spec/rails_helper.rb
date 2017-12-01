@@ -7,6 +7,21 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
+# Added per https://www.bloc.io/users/adan-amarillas/checkpoints/2506?roadmap_section_id=330
+# by Adan Amarillas
+require 'factory_girl_rails'
+
+# Added per "https://github.com/plataformatec/devise"
+# Adan Amarillas
+RSpec.configure do |config|
+    config.include Devise::Test::ControllerHelpers, type: :controller
+    config.include Devise::Test::ControllerHelpers, type: :view
+
+    # Added per https://www.bloc.io/users/adan-amarillas/checkpoints/2506?roadmap_section_id=330
+    # by Adan Amarillas
+    config.include FactoryGirl::Syntax::Methods
+end
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end

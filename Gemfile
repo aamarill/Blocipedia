@@ -43,6 +43,7 @@ end
 group :development, :test do
     gem 'rspec-rails', '~> 3.0'
     gem 'rails-controller-testing'
+    gem 'factory_girl_rails', '~> 4.0'
 end
 
 gem 'bootstrap-sass'
@@ -50,3 +51,5 @@ gem 'bootstrap-sass'
 gem 'devise'
 
 gem 'figaro', '1.0'
+
+gem "pundit"
