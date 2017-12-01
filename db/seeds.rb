@@ -1,4 +1,5 @@
 require 'random_data'
+require 'faker'
 
 # Create Users
 5.times do
@@ -6,7 +7,8 @@ require 'random_data'
 	pw = RandomData.random_sentence
 
 	user = User.create!(
-		email: RandomData.random_email,
+		# email: RandomData.random_email,
+		email: Faker::Internet.unique.free_email,
 		password: pw,
 		password_confirmation: pw,
 		confirmed_at: Date.today,
@@ -20,7 +22,7 @@ users = User.all
 # Create Wikis
 15.times do
 		Wiki.create!(
-		title: RandomData.random_sentence,
+		title: Faker::GameOfThrones.unique.character,
 		body: RandomData.random_paragraph,
 		user: users.sample
 	)
