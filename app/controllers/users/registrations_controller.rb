@@ -13,16 +13,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    super
+    redirect_to new_user_registration_path
+  end
 
   # PUT /resource
   def update
     super
     # redirect_to [@topic, @post]
     # redirect_to [current_user]
-    # render 
+    # render
     flash[:notice] = "Password was updated."
   end
 

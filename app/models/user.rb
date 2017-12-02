@@ -15,9 +15,11 @@ class User < ApplicationRecord
 
 
 
-    private    
+    private
     def init
         # The default user type will be standard, no matter what the user inputs
-        self.role = "standard"
+        if self.role == nil
+            self.role = "standard"
+        end
     end
 end

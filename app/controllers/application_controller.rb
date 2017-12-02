@@ -8,6 +8,15 @@ class ApplicationController < ActionController::Base
     # Per Devise documentation. This line needs to come AFTER "protect_from_forgery"
     # before_action :authenticate_user!
 
+    class Amount
+
+        def self.default
+            1500
+        end
+
+    end
+
+
     private
 
     def user_not_authorized
@@ -21,4 +30,7 @@ class ApplicationController < ActionController::Base
             redirect_to new_user_registration_path
         end
     end
+
+
+
 end
