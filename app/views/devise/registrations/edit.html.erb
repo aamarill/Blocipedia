@@ -43,7 +43,7 @@
     <p><%= button_to "Upgrade my account", new_charge_path, method: :get %></p>
 <% elsif current_user.role == 'premium' %>
     <h3>Downgrade my account</h3>
-    <p><%= link_to "Downgrade my account", charge_path(current_user.id) , data:{ confirm: "Are you sure?"},method: :delete %></p>
+    <p><%= link_to "Downgrade my account", charge_path(current_user.id) , data:{ confirm: "Are you sure? All of your private wikis will become public."},method: :delete %></p>
 <% end %>
 
 <h3>Cancel my account</h3>

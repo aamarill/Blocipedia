@@ -42,6 +42,14 @@ class ApplicationPolicy
     Pundit.policy_scope!(user, record.class)
   end
 
+    def premium?
+        user.role == 'premium'
+    end
+
+    def admin?
+        user.role == 'admin'
+    end
+
   class Scope
     attr_reader :user, :scope
 

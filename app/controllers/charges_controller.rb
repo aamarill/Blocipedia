@@ -49,6 +49,11 @@ class ChargesController < ApplicationController
         @user = User.find_by_email(current_user.email)
         @user.role = 'standard'
 
+        @user.wikis.each do |wiki|
+            wiki.private = false
+            wiki.save
+        end
+
         if @user.save
             flash[:notice] = "Your account has been downgraded to standard."
             redirect_to edit_user_registration_path

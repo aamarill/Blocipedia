@@ -20,7 +20,7 @@
                 <%= f.label :body %>
                 <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter topic description" %>
             </div>
-            <% if @wiki.user == current_user %>
+            <% if @wiki.user == current_user && policy(@wiki).premium? || policy(@wiki).admin? %>
                 <div class="form-group">
                     <%= f.label :public, class: 'checkbox' do %>
                         <%= f.check_box :private %> Private topic
