@@ -31,19 +31,28 @@ end
 
 # Create 2 custom users to be used during development
 User.create!(
-	email: "aamarill.engr@gmail.com",
+	email: "admin@gmail.com",
 	password: "password",
 	password_confirmation: "password",
-	confirmed_at: Date.today
+	confirmed_at: Date.today,
+	role: 'admin'
 )
 
 User.create!(
-	email: "aamarill.engr2@gmail.com",
+	email: "premium@gmail.com",
 	password: "password",
 	password_confirmation: "password",
-	confirmed_at: Date.today
+	confirmed_at: Date.today,
+	role: 'premium'
 )
 
+User.create!(
+	email: "standard@gmail.com",
+	password: "password",
+	password_confirmation: "password",
+	confirmed_at: Date.today,
+	role: 'standard'
+)
 
 
 puts "Seed Finished"

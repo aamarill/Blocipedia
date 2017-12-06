@@ -7,7 +7,7 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    true
   end
 
   def show?
@@ -48,6 +48,14 @@ class ApplicationPolicy
 
     def admin?
         user.role == 'admin'
+    end
+
+    def collaborator?
+      if record.private == true
+        record.user == user || record.collaborators.where(user: user) != [] || user.role == 'admin'
+      else
+        true
+      end
     end
 
   class Scope

@@ -10,6 +10,8 @@ class User < ApplicationRecord
             :confirmable
 
     has_many :wikis, dependent: :destroy
+    has_many :collaborators
+    # has_many :wikis, through: :collaborators
 
     after_initialize :init
 

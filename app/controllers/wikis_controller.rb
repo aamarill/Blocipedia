@@ -5,11 +5,18 @@ class WikisController < ApplicationController
 
 
     def index
-        @wikis = Wiki.all
+        # @wikis = Wiki.all
+        @wikis = policy_scope(Wiki)
     end
 
     def show
-        @wiki = Wiki.find(params[:id])
+      @wiki = Wiki.find(params[:id])
+
+      unless policy(@wiki).collaborator?
+        redirect_to action: :index
+        flash[:alert] = "That wiki is private"
+      end
+
     end
 
     def new

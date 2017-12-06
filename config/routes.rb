@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
+
     resources :charges, only: [:new, :create, :destroy]
 
     devise_for :users
 
-    resources :wikis
+    resources :wikis do
+      resources :collaborators, only: [:create, :edit]
+    end
 
     # get 'wikis/index'
     #

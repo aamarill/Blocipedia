@@ -13,13 +13,42 @@
   </div>
 </div>
 
-<%= link_to "Back to Wikis", wikis_path, class: 'btn' %></br>
 
+<% if current_user %>
+            <%= render partial: 'collaborators/collaborator', locals: { wiki: @wiki } %>
+<% end %>
+</br>
 
+<% if policy(@wiki).collaborator? %>
+  <%= form_for :collaborator, {url: wiki_collaborators_path(@wiki)} do |f| %>
+      <div class="form-group">
+        Add Collaborator Here<%= f.text_field :email, class: 'form-control', placeholder: "Enter email to add" %>
+      </div>
+      <%= f.submit "Add Collaborator", class: 'btn btn-success' %>
+  <% end %>
+</br>
+</br>
+  <% if policy(@wiki).collaborator? %>
+    <%= form_for :collaborator, {url: edit_wiki_collaborator_path(@wiki), :method=>"get"} do |f| %>
+        <div class="form-group">
+        Remove Collaborator Here:<%= f.text_field :email, class: 'form-control', placeholder: "Enter email to remove" %>
+        </div>
+        <%= f.submit "Remove Collaborator", class: 'btn btn-danger' %>
+    <% end %>
+  <% end %>
+<% end %>
+
+</br>
+</br>
+</br>
+</br>
 <% if policy(@wiki).edit? %>
-  <%= link_to "Edit Wiki", edit_wiki_path, class: 'btn btn-success' %>
+  <%= link_to "Edit Wiki", edit_wiki_path, wiki: @wiki, class: 'btn btn-primary' %>
 <% end %>
 
 <% if policy(@wiki).destroy? %>
     <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?'} %>
 <% end %>
+
+</br>
+<%= link_to "Back to Wikis", wikis_path, class: 'btn' %>

@@ -1,0 +1,7 @@
+
+<h5>Collaborators</h5>
+<ul>
+	<% wiki.collaborators.each do |collaborator| %>
+		<li><%=collaborator.user.email%></li>
+	<% end %>
+</ul>
