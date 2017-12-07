@@ -1,14 +1,16 @@
 class Wiki < ApplicationRecord
-    belongs_to :user
-    has_many :collaborators
-    after_initialize :init
+  belongs_to :user
+  has_many :collaborators, dependent: :destroy
+  has_many :users, through: :collaborators
 
-    def public?
-      !self.private
-    end
+  after_initialize :init
 
-    private
-    def init
-        self.private = false if self.private.nil?
-    end
+  def public?
+    !self.private
+  end
+
+  private
+  def init
+    self.private = false if self.private.nil?
+  end
 end
