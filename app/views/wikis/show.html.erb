@@ -1,10 +1,10 @@
 <h1><%= @wiki.title %></h1>
 <h4>
-    <% if @wiki.private %>
-        <div>Private Wiki</div>
-    <% else %>
-        <div>Public Wiki</div>
-    <% end %>
+  <% if @wiki.private %>
+    <div>Private Wiki</div>
+  <% else %>
+    <div>Public Wiki</div>
+  <% end %>
 </h4>
 
 <div class="row">
@@ -15,25 +15,25 @@
 
 
 <% if current_user %>
-            <%= render partial: 'collaborators/collaborator', locals: { wiki: @wiki } %>
+  <%= render partial: 'collaborators/collaborator', locals: { wiki: @wiki } %>
 <% end %>
 </br>
 
 <% if policy(@wiki).collaborator? %>
   <%= form_for :collaborator, {url: wiki_collaborators_path(@wiki)} do |f| %>
-      <div class="form-group">
-        Add Collaborator Here<%= f.text_field :email, class: 'form-control', placeholder: "Enter email to add" %>
-      </div>
-      <%= f.submit "Add Collaborator", class: 'btn btn-success' %>
-  <% end %>
+    <div class="form-group">
+      Add Collaborator Here<%= f.text_field :email, class: 'form-control', placeholder: "Enter email to add" %>
+    </div>
+  <%= f.submit "Add Collaborator", class: 'btn btn-success' %>
+<% end %>
 </br>
 </br>
   <% if policy(@wiki).collaborator? %>
     <%= form_for :collaborator, {url: edit_wiki_collaborator_path(@wiki), :method=>"get"} do |f| %>
-        <div class="form-group">
+      <div class="form-group">
         Remove Collaborator Here:<%= f.text_field :email, class: 'form-control', placeholder: "Enter email to remove" %>
-        </div>
-        <%= f.submit "Remove Collaborator", class: 'btn btn-danger' %>
+      </div>
+      <%= f.submit "Remove Collaborator", class: 'btn btn-danger' %>
     <% end %>
   <% end %>
 <% end %>
@@ -47,7 +47,7 @@
 <% end %>
 
 <% if policy(@wiki).destroy? %>
-    <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?'} %>
+  <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?'} %>
 <% end %>
 
 </br>

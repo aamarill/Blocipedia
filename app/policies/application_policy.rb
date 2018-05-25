@@ -24,9 +24,9 @@ class ApplicationPolicy
 
   def update?
     if record.private == true
-        user == record.user
+      user == record.user
     else
-        user.present?
+      user.present?
     end
   end
 
@@ -42,21 +42,21 @@ class ApplicationPolicy
     Pundit.policy_scope!(user, record.class)
   end
 
-    def premium?
-        user.role == 'premium'
-    end
+  def premium?
+    user.role == 'premium'
+  end
 
-    def admin?
-        user.role == 'admin'
-    end
+  def admin?
+    user.role == 'admin'
+  end
 
-    def collaborator?
-      if record.private == true
-        record.user == user || record.collaborators.where(user: user) != [] || user.role == 'admin'
-      else
-        true
-      end
+  def collaborator?
+    if record.private == true
+      record.user == user || record.collaborators.where(user: user) != [] || user.role == 'admin'
+    else
+      true
     end
+  end
 
   class Scope
     attr_reader :user, :scope
@@ -69,5 +69,7 @@ class ApplicationPolicy
     def resolve
       scope
     end
+
   end
+
 end
